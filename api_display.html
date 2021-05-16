@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% block head %}
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      {% block styles %}
+        {{ bootstrap.load_css() }}
+      {% endblock %}
+      <title>Artist Results</title>
+    {% endblock %}
+  </head>
+<body>
+  <style>
+    body{
+      background-image: url('https://cdn.mos.cms.futurecdn.net/nnmvUoZ5W4itnwVnjg4kAQ.jpg');
+    }
+    </style>
+  {% block content %}
+        <div class="container mb-4">  
+        <div class="card mt-4">
+            <div class="card-body">
+            <h2 class="card-title">A playlist recommened by Deezer.com 
+              </h2>
+
+            <ul class="list-group">
+              {% for datas in data %}
+              <!-- <span>{{datas["id"]}}</span> -->
+              <span>{{datas["title"]}}</span>
+              <!-- <span>{{datas["duration"]}}</span> -->
+              <span><a href= "{{datas["link"]}}"> playlist </a></span>
+              <!-- link for the playlist and will be directed to the Deezer website for each playlist -->
+              
+              <p> {{ datas["text"]}}</p>
+              {% endfor %}
+            </div>
+            <div class="card-footer">
+            <a href="{{ url_for('index') }}" class="card-link">Homepage</a>
+            </div>
+        </div>
+        </div>
+  {% endblock content %}
+</body>
+</html>
+
+<!-- api provided by Deezer: https://api.deezer.com/user/2529/playlists  -->
+<!-- a recommeded playlist list from Deezer with a clickable link -->

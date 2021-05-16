@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% block head %}
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      {% block styles %}
+        {{ bootstrap.load_css() }}
+      {% endblock %}
+      <title>Artist Results</title>
+    {% endblock %}
+  </head>
+<body>
+  <style>
+    body{
+      background-image: url('https://static.vecteezy.com/system/resources/previews/000/150/817/original/silhouette-singer-on-stage-vector.jpg');
+    }
+    </style>
+  {% block content %}
+    <div class="container mb-4">  
+      <div class="card mt-4">
+        <div class="card-body">
+          <h2 class="card-title">Your created playlist</h2>
+          <ul class="list-group">
+            {% for item in playlist %}
+              <li class="list-group-item">{{ item.artist }}</li>
+              <!-- gets the artist that was inputted and displays the name -->
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a href="{{ url_for('index') }}" class="card-link">Homepage</a>
+          <!-- link to the homepage if you want to add more artists -->
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+</body>
+</html>
+
+<!-- to show the artist inputed by the user and displays the artist's name on flask page -->
