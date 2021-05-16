@@ -1,16 +1,11 @@
-from flask import Flask, render_template, flash, redirect,request
+from flask import Flask, render_template, redirect,request,
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, 
 from wtforms.validators import DataRequired
 from datetime import datetime
-import requests,json, sys
+import requests,json
 import speech_recognition as sr
-from pprint import pprint
-from PySide6.QtWidgets import (QApplication, QWidget, QLabel, QVBoxLayout)
-from PySide6.QtGui import QPixmap
-from PySide6.QtCore import Qt
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'csumb-otter'
@@ -77,20 +72,15 @@ if __name__ == "__main__":
 
 # api information for the search bar
 
-@app.route("/api_display", methods=["GET","POST"])
+@app.route('/api_display', methods=['GET'])
 def api():
-    # url = "https://deezerdevs-deezer.p.rapidapi.com/playlist/%7Bid%7D"
-    url = "https://www.deezer.com/search/adele/playlist"
-
-    headers = {
-        'x-rapidapi-key': "f20d5ad941mshb611515f5731698p1f58d2jsn1dcbdabdb263",
-        'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com"
-        }
-
-    response = requests.request("GET", url, headers=headers)
-    # data = json.loads(req.content)
+    # response = requests.request("GET", url, headers=headers)
+    req = requests.get('https://api.deezer.com/user/2529/playlists')
+    data = json.loads(req.content)
     # print(response.text)
-    return render_template('api_display.html', data = response['all'])
+    return render_template('api_display.html', data=data['data'])
+
+
 
 
 

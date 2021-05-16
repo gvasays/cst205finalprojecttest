@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speech Recognition in Python</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index1.css') }}" />
+</head>
+<body style="background-color:orange;">
+
+    <div id="speechContainer">
+        <h1>Upload new File</h1>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file"/>
+            <br>
+            <input type="submit" id="submitButton" value="Transcribe"/>
+        </form>
+    <!-- import the .wav file (from your library) to the transcribe feature -->
+        {% if transcript != "" %}
+            <div id="speechTranscriptContainer">
+                <h1>Transcript</h1>
+                <p id="speechText">{{ transcript }}</p>
+            </div>
+            <!-- transcribes the .wav file -->
+            <!-- will return the with error if notheing is detected, pressed the back button to retrun to page -->
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+<!-- USE ONLY .WAV FILES FOR THE TRANSCRIBE TO WORK -->
+<!-- used to transcibe the files from .wav files to something we can read -->
+<!-- only works on with very short files (1-10 seconds max) -->
